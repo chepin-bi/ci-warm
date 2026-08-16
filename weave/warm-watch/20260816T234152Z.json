@@ -1,0 +1,10 @@
+{
+ "ts": "20260816T234152Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "热备份看门狗（仅部署在备份仓库 ci-control-backup）:success,sentry:skipped,sentry:skipped,inbox-poller:success,dashboard:success",
+  "dashboard snapshot ts": "2026-08-16T23:32:44.621115+00:00"
+ },
+ "prev": "7cd9d8b30a7e905b0899a13eb5ce3a33e81804a602df7a9e9b1b34028d081f44",
+ "sha256": "bea9dc3be626f5c0a70f5bf6566a9b886a5eb3915328f68898694f0a435c7ddb"
+}
