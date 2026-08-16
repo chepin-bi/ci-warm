@@ -38,15 +38,32 @@ Generate → 复制 token。**交付方式（关键）**：不要把 token 发�
 - Name：`WARM_BI_PAT`　Value：粘贴 → Add secret
 然后在大厅留一句「WARM_BI_PAT 已就位」即可，剩下全部我来（warm-sync 工作流：每日把 ci-control 内核镜像到 chepin-bi/ci-warm + 反向心跳 + 切换 runbook）。
 
-### 3. 路线 B（制度化时再做）：chepin-bi 名下第二个 GitHub App
+### 3. 路线 B：chepin-bi 名下第二个 GitHub App（v2 勘误·逐步带界面锚点）
 
-chepin-bi → **Developer settings → GitHub Apps → New GitHub App**：
+> v2 勘误（2026-08-17）：v1 有三处缺陷——①漏 Workflows 权限（暖侧推 warm-watch.yml 被 403 实测）；②「记首页的 App ID」指代不清；③「secrets 存两件」与宅内惯例（CI_APP_ID 存 Variables）不一致。以下为逐步版。
+
+**第 1 步 · 建 App**：浏览器登录 chepin-bi → 右上头像 → **Settings** → 左侧栏最底 **Developer settings** → **GitHub Apps** → **New GitHub App**：
 - Name：`ci-warm-bi`；Homepage：`https://github.com/chepin-bi/ci-warm`
 - Webhook：**取消勾选 Active**
-- Permissions → Repository：**Contents: Read and write**
+- **Repository permissions 两项**：
+  - Contents: **Read and write**（镜像写入）
+  - Workflows: **Read and write**（推 .github/workflows/ 文件，缺它 403）
 - Where can this App be installed：**Only on this account**
-→ Create → **Generate a private key**（下载 .pem）→ 左侧 **Install App** → 选 `ci-warm` → 记首页的 **App ID**
-交付：ci-control secrets 存两件：`WARM_BI_APP_ID`=App ID、`WARM_BI_APP_KEY`=.pem 全文。
+→ 点 **Create GitHub App**
+
+**第 2 步 · 取 App ID**（「首页」= 创建成功后自动进入的 App 设置页，亦可随时从头像 → Settings → Developer settings → GitHub Apps → 点 `ci-warm-bi` 回到此页）：
+- 在该页**顶部 General 区块**，`About` 下方即是 **App ID**（一串数字，如 `1234567`）。复制它。
+
+**第 3 步 · 取私钥**：同页滚到底 **Private keys** → **Generate a private key** → 浏览器自动下载 `.pem` 文件。
+
+**第 4 步 · 安装**：左侧 **Install App** → 选 `ci-warm` 仓 → Install。
+
+**第 5 步 · 交付到 ci-control**（在 chepin-ai/ci-control 仓操作）：
+- **Settings → Secrets and variables → Actions → Variables 标签页 → New repository variable**：Name `WARM_BI_APP_ID`，Value=第 2 步的数字。
+- **Secrets 标签页 → New repository secret**：Name `WARM_BI_APP_KEY`，Value=第 3 步 .pem 文件**全文**（含 `-----BEGIN RSA PRIVATE KEY-----` 头尾行）。
+- （若你已把 `WARM_BI_APP_ID` 存进了 Secrets 标签页：不必搬，warm-sync 已双槽兼容（caeab3e9），两处任一处都能用；但宅例推荐 Variables，与 CI_APP_ID 同例。）
+
+**验证**：交付后下一次 warm-sync 跑（或手动 Run workflow），ci-control/bridge/warm-status.json 的 `auth_path` 应变 `"app"`、`warm_watch` 应变 `"ok"`。我在下一班自动核验并大厅报备。
 
 ### 4. 路线 A（不推荐）：把现有 CI App 装到 chepin-bi
 
