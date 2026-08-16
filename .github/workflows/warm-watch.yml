@@ -1,0 +1,36 @@
+name: warm-watch
+on:
+  schedule: [{ cron: "*/47 * * * *" }]
+  workflow_dispatch: {}
+permissions: { contents: write }
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: probe chepin-ai side
+        run: |
+          set +e
+          mkdir -p weave/warm-watch
+          TS=$(date -u +%Y%m%dT%H%M%SZ)
+          INBOX_LAST=$(curl -s -H "Accept: application/vnd.github+json" "https://api.github.com/repos/chepin-ai/ci-inbox" | python3 -c "import sys,json;print(json.load(sys.stdin).get('pushed_at','?'))" 2>/dev/null || echo "unreachable")
+          CTRL_RUNS=$(curl -s "https://api.github.com/repos/chepin-ai/ci-control/actions/runs?per_page=5" | python3 -c "import sys,json;d=json.load(sys.stdin);print(','.join(f\"{r['name']}:{r['conclusion']}\" for r in d.get('workflow_runs',[])))" 2>/dev/null || echo "unreachable")
+          DASH=$(curl -s "https://raw.githubusercontent.com/chepin-ai/ci-control/main/dashboard/dashboard.meta.json" | python3 -c "import sys,json;print(json.load(sys.stdin).get('ts','?'))" 2>/dev/null || echo "unreachable")
+          python3 - "$TS" "$INBOX_LAST" "$CTRL_RUNS" "$DASH" <<'PY'
+          import sys, json, hashlib, os, glob
+          ts, inbox, runs, dash = sys.argv[1:5]
+          os.makedirs("weave/warm-watch", exist_ok=True)
+          prev = ""
+          fs = sorted(glob.glob("weave/warm-watch/*.json"))
+          if fs:
+              prev = hashlib.sha256(open(fs[-1],"rb").read()).hexdigest()
+          rec = {"ts": ts, "probe": {"ci-inbox pushed_at": inbox, "ci-control last5": runs, "dashboard snapshot ts": dash}, "prev": prev}
+          rec["sha256"] = hashlib.sha256(json.dumps({k:v for k,v in rec.items() if k!="sha256"}, sort_keys=True).encode()).hexdigest()
+          open(f"weave/warm-watch/{ts}.json","w").write(json.dumps(rec, ensure_ascii=False, indent=1))
+          PY
+      - name: commit
+        run: |
+          TS=$(date -u +%Y%m%dT%H%M%SZ)
+          git config user.name "ci-warm"; git config user.email "warm@ci"
+          git add weave/warm-watch/ && git commit -m "warm-watch $TS" && git push || echo "nothing to commit"
