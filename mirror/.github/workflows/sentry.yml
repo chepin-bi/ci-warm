@@ -15,6 +15,20 @@ on:
       - "worm-respond"
       - "隐私卫士（检测提案制 + 新仓库自动接入）"
       - ".github/workflows/privacy-guard.yml"   # 名失效（YAML 病）时以路径为名，双轨监听
+      - ".github/workflows/inbox-poller.yml"   # 双轨 path 形态
+      - ".github/workflows/patch-bridge.yml"   # 双轨 path 形态
+      - ".github/workflows/provision.yml"   # 双轨 path 形态
+      - ".github/workflows/dashboard.yml"   # 双轨 path 形态
+      - ".github/workflows/worm-crawl.yml"   # 双轨 path 形态
+      - ".github/workflows/worm-weave.yml"   # 双轨 path 形态
+      - ".github/workflows/worm-spider.yml"   # 双轨 path 形态
+      - ".github/workflows/worm-audit.yml"   # 双轨 path 形态
+      - ".github/workflows/worm-respond.yml"   # 双轨 path 形态
+      - ".github/workflows/fleet-key-census.yml"   # 双轨 path 形态
+      - ".github/workflows/llm-bench.yml"   # 双轨 path 形态
+      - ".github/workflows/warm-sync.yml"   # 双轨 path 形态
+      - ".github/workflows/sentry.yml"   # 双轨 path 形态
+      - ".github/workflows/worm-attrib.yml"   # 双轨 path 形态
       - "fleet-key-census"
       - "llm-bench"
       - "warm-sync"
