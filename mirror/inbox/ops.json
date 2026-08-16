@@ -1,0 +1,85 @@
+{
+  "v": 1,
+  "note": "inbox/ops.json —— 指令轨 op 词表单源（schema 锚：本文件 sha 进 CONVENTION §6）。信封构造端发送前本地校验本表；poller 拒收亦回执并引用本表 sha。",
+  "ops": {
+    "status": {
+      "fields": [],
+      "level": "low",
+      "note": "探活/状态"
+    },
+    "search-repos": {
+      "fields": [
+        "query"
+      ],
+      "level": "low"
+    },
+    "pool-post": {
+      "fields": [
+        "body"
+      ],
+      "level": "low"
+    },
+    "leave-msg": {
+      "fields": [
+        "to",
+        "body"
+      ],
+      "level": "low"
+    },
+    "read-file-enc": {
+      "fields": [
+        "repo",
+        "path",
+        "reply_pk"
+      ],
+      "level": "low",
+      "note": "回执=密文文件字节"
+    },
+    "push-file-enc": {
+      "fields": [
+        "repo",
+        "path",
+        "content_b64",
+        "message",
+        "reply_pk"
+      ],
+      "level": "high",
+      "note": "目标仓须过 valid_target（私有业务仓，INFRA 禁）"
+    },
+    "dispatch": {
+      "fields": [
+        "repo",
+        "workflow"
+      ],
+      "level": "high"
+    },
+    "sync": {
+      "fields": [],
+      "level": "high"
+    },
+    "set-shared-keys": {
+      "fields": [
+        "blob_b64"
+      ],
+      "level": "high",
+      "note": "仅分发层"
+    },
+    "vendor-ext": {
+      "fields": [
+        "args"
+      ],
+      "level": "high"
+    },
+    "rotate-name": {
+      "fields": [],
+      "level": "high",
+      "note": "收件箱改名"
+    }
+  },
+  "envelope": {
+    "title": "[CMD] 前缀",
+    "body": "base64(SealedBox(inbox_pk, JSON含hmac))，单行",
+    "hmac": "HMAC_SHA256(bytes.fromhex(CMD_AUTH), json.dumps(payload不含hmac不含ticket, sort_keys=True, separators=(',',':')))",
+    "ticket_bypass": "日票 HMAC(CMD_AUTH,'ticket|date|session|50')；LOW 全场放行，push-file-enc/dispatch 限本仓"
+  }
+}
