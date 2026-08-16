@@ -307,7 +307,70 @@
    "status": "done",
    "prio": "P1",
    "note": "self_audit a567e441；LongCat 新包恢复事件基线已捕获"
+  },
+  {
+   "id": "VIS-DRIFT-1",
+   "title": "两仓公有化漂移真案（E911叙事反转）",
+   "status": "attrib-done",
+   "prio": "P0",
+   "note": "bridge/incidents/INC-VIS-DRIFT-1.md；DI-01确认私有原设计"
+  },
+  {
+   "id": "DI-1",
+   "title": "DESIGN-INTENTS 设计意图档案",
+   "status": "done",
+   "prio": "P0",
+   "note": "v1十三件入册，镜像ci-library待LIBRARY-LANE-1"
+  },
+  {
+   "id": "GOV-1",
+   "title": "GOV-PROTOCOL-01 议事规矩",
+   "status": "done",
+   "prio": "P0",
+   "note": "RFC程序/防震动/优先级/双签/并行试点章程"
+  },
+  {
+   "id": "COUNCIL-1",
+   "title": "多智能体委员会",
+   "status": "designed",
+   "prio": "P1",
+   "note": "bridge/COUNCIL-01.md；月度例会开帖虫待排"
+  },
+  {
+   "id": "CLASSIFY-1",
+   "title": "公仓文档分级法+存量普查",
+   "status": "in-progress",
+   "prio": "P1",
+   "note": "explore普查中；命中L2迁私/脱敏"
+  },
+  {
+   "id": "GUARD-SNAP-1",
+   "title": "卫士每班可见性状态基线快照+漂移事件",
+   "status": "queued",
+   "prio": "P1",
+   "note": "VIS-DRIFT-1修复尾巴"
+  },
+  {
+   "id": "CI-BUILD-1",
+   "title": "ci-build专仓（私·系统设计/构建/重构）",
+   "status": "waiting-chepin",
+   "prio": "P1",
+   "note": "GOV第二章P1；建仓=chepin手"
+  },
+  {
+   "id": "GRID-FIX-1",
+   "title": "README-GRID路线B逐步版+双槽",
+   "status": "done",
+   "prio": "P1",
+   "note": "fef8f189+caeab3e9；auth_path=app待验证"
+  },
+  {
+   "id": "SESSION-ARCHIVE-1",
+   "title": "会话历史归档机制",
+   "status": "legislated",
+   "prio": "P1",
+   "note": "COUNCIL-01附属；LIBRARY-LANE承运"
   }
  ],
- "ts": "2026-08-16T18:40Z"
+ "ts": "2026-08-17T03:2xZ"
 }
