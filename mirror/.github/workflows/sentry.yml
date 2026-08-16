@@ -1,0 +1,69 @@
+# sentry.yml —— 全局失败哨兵（workflow_run 触发，失败即报，不再等巡检发现）
+# 监听核心班次的 failure/timed_out，即时大厅报警 + 注入 mailbox/cisvr.json prio:fast 工单。
+name: sentry
+on:
+  workflow_run:
+    workflows:
+      - "inbox-poller"
+      - "patch-bridge"
+      - "provision"
+      - "dashboard"
+      - "worm-crawl"
+      - "worm-weave"
+      - "worm-spider"
+      - "worm-audit"
+      - "worm-respond"
+      - "隐私卫士（检测提案制 + 新仓库自动接入）"
+      - ".github/workflows/privacy-guard.yml"   # 名失效（YAML 病）时以路径为名，双轨监听
+      - "fleet-key-census"
+      - "llm-bench"
+      - "warm-sync"
+    types: [completed]
+permissions:
+  contents: read
+jobs:
+  alert:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'timed_out' || github.event.workflow_run.conclusion == 'cancelled' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app
+        with:
+          app-id: ${{ vars.CI_APP_ID }}
+          private-key: ${{ secrets.CI_APP_KEY }}
+          owner: chepin-ai
+      - name: 报警 + 出工单
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          WF_NAME: ${{ github.event.workflow_run.name }}
+          WF_CONC: ${{ github.event.workflow_run.conclusion }}
+          WF_URL: ${{ github.event.workflow_run.html_url }}
+          WF_RID: ${{ github.event.workflow_run.id }}
+        run: |
+          python3 - <<'EOF'
+          import os, json, base64, time, urllib.request
+          GH="https://api.github.com"; TOK=os.environ["GH_TOKEN"]
+          H={"Authorization":f"Bearer {TOK}","Accept":"application/vnd.github+json"}
+          def gh(p,m="GET",b=None):
+              r=urllib.request.Request(GH+p if p.startswith("/") else p,method=m,
+                  data=json.dumps(b).encode() if b is not None else None,headers=H)
+              try:
+                  with urllib.request.urlopen(r,timeout=25) as x:
+                      d=x.read(); return json.loads(d or b"{}")
+              except Exception as e: print("gh",m,p,"->",type(e).__name__); return None
+          name=os.environ["WF_NAME"]; conc=os.environ["WF_CONC"]; url=os.environ["WF_URL"]; rid=os.environ["WF_RID"]
+          nowz=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
+          msg = "thr: SENTRY-告警\ndtag: SENTRY-%s\n\n🚨 班次失败：**%s** → %s\n时间：%s\n运行：%s\n\n—— sentry（全局失败哨兵）" % (rid, name, conc, nowz, url)
+          gh("/repos/chepin-ai/ci-inbox/issues/144/comments","POST",{"body":msg})
+          d=gh("/repos/chepin-ai/ci-control/contents/mailbox/cisvr.json")
+          doc=json.loads(base64.b64decode(d["content"]).decode()) if d and "content" in d else {"directives":[]}
+          did="SENTRY-%s" % rid
+          if did not in {x.get("id") for x in doc.get("directives",[])}:
+              doc.setdefault("directives",[]).append({"id":did,"prio":"fast","ts":nowz,
+                  "todo":"[失败工单] %s → %s，查因修复：%s" % (name, conc, url)})
+              body={"message":"sentry: 失败工单 "+did,
+                    "content":base64.b64encode(json.dumps(doc,ensure_ascii=False,indent=1).encode()).decode()}
+              if d and "sha" in d: body["sha"]=d["sha"]
+              gh("/repos/chepin-ai/ci-control/contents/mailbox/cisvr.json","PUT",body)
+          print("sentry 告警完毕:", name, conc)
+          EOF
