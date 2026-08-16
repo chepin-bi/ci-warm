@@ -1,0 +1,31 @@
+{
+  "v": 2,
+  "note": "BRG-01 外部会话 outbox 注册表。会话把待办/回执发布到自己站点固定路径 /outbox.json；bridge-poller（backup 仓，*/23min）轮询本表、验签、代投（weave/ 前缀茧件直投 ci-library）、写 mailbox/<会话>.json 回执。directives 槽为 cisvr→会话反向指令通道。注册新会话：大厅告知 cisvr 或 chepin 直改。",
+  "sessions": {
+    "usrm": {
+      "url": "https://3ay75hdbfrqe4.ok.kimi.link/usrm-outbox.json",
+      "trust": "hmac-preferred",
+      "note": "usrm 会话 outbox；2026-08-16 注册，路径实测 404=尚未发布，等其拍尾发布"
+    },
+    "crawl": {
+      "url": null,
+      "note": "三虫·爬虫（待建站后补 URL）"
+    },
+    "weave": {
+      "url": null,
+      "note": "三虫·蚕（待建站后补 URL）"
+    },
+    "spider": {
+      "url": null,
+      "note": "三虫·蜘蛛（待建站后补 URL）"
+    },
+    "brg-selftest": {
+      "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/test/selftest-outbox.json",
+      "note": "cisvr 自检会话（压测夹具）"
+    },
+    "cisvr": {
+      "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/cisvr-outbox.json",
+      "note": "cisvr 中枢 outbox（种子/公告直投通道）"
+    }
+  }
+}
