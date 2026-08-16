@@ -1,0 +1,228 @@
+{
+ "v": 1,
+ "note": "体系级挂账（spider 每 6h 巡检，逾期自动出工单——'一句话放历史里'病族的制度解）",
+ "items": [
+  {
+   "id": "IRONCLAW-1",
+   "title": "ironclaw 四步跟进：拆解/映射/移植/实测（泄漏自检/心跳签章/routines.md → agent-duty v2）",
+   "status": "queued",
+   "due": "2026-08-23",
+   "owner": "cisvr"
+  },
+  {
+   "id": "KG-IMPL-1",
+   "title": "知识谱系方案：三虫自动机已上线（本班），首圈密织+索引茧合流",
+   "status": "in-progress",
+   "due": "2026-08-20",
+   "owner": "cisvr+三虫"
+  },
+  {
+   "id": "KEYROLL-1",
+   "title": "usrm KEY-ROLL 联调裁决（旧签验→钉新钥哈希→24h 双钥宽限）",
+   "status": "queued",
+   "due": "2026-08-19",
+   "owner": "cisvr"
+  },
+  {
+   "id": "EXT-DAEMON-1",
+   "title": "usrm external-daemon.yml 取件/审查/投产 ci-control",
+   "status": "in-progress",
+   "due": "2026-08-18",
+   "owner": "cisvr",
+   "note": "#615 read-file-enc 回执 404：usrm 尚未落 ci/external-daemon.yml"
+  },
+  {
+   "id": "ENTANGLE-1",
+   "title": "ENTANGLE-PULSE-001 首脉冲（qgl×usrm 同 nonce 独立作答→相关性检验）",
+   "status": "in-progress",
+   "due": "2026-08-20",
+   "owner": "cisvr+qgl+usrm"
+  },
+  {
+   "id": "VINF-66",
+   "title": "vinf 66 调用包（LongCat 代跑）核销",
+   "status": "in-progress",
+   "due": "2026-08-18",
+   "owner": "cisvr"
+  },
+  {
+   "id": "CFTS-LEAN",
+   "title": "EDN-CFTS-LEAN-01 四件套核销",
+   "status": "queued",
+   "due": "2026-08-22",
+   "owner": "cisvr+cfts"
+  },
+  {
+   "id": "AGENT-RACE",
+   "title": "多智能体框架实景赛（CrewAI vs LangGraph）",
+   "status": "queued",
+   "due": "2026-08-30",
+   "owner": "cisvr"
+  },
+  {
+   "id": "SANJIA-ARCH",
+   "title": "《三家族绝技档案》入 ci-logs",
+   "status": "queued",
+   "due": "2026-08-25",
+   "owner": "cisvr"
+  },
+  {
+   "id": "E805",
+   "title": "E805 强制入 gen（消息面纪律）",
+   "status": "queued",
+   "due": "2026-08-25",
+   "owner": "cisvr"
+  },
+  {
+   "id": "QUOTA-91",
+   "title": "9/1 分钟重置观察哨 + 自托管/暖备裁决落地",
+   "status": "in-progress",
+   "due": "2026-09-01",
+   "owner": "chepin 按钮/cisvr 备料"
+  },
+  {
+   "id": "UCIF2-REFER",
+   "title": "ucif2 参议文字回报 + POLLEN-INDEX-1 首件索引茧",
+   "status": "in-progress",
+   "due": "2026-08-22",
+   "owner": "ucif2/cisvr 核销"
+  },
+  {
+   "id": "QGL-CIEXT",
+   "title": "qgl CI_EXT_KEY secret 配置（chepin 或 key-distributor 下发）",
+   "status": "waiting-chepin",
+   "due": "2026-08-20",
+   "owner": "chepin"
+  },
+  {
+   "id": "T124-ENGINE",
+   "title": "T124 引擎迁入 quantum-go-ledger engine/",
+   "status": "waiting-chepin",
+   "due": "2026-08-25",
+   "owner": "chepin 侧会话"
+  },
+  {
+   "id": "E911-GUARD",
+   "title": "隐私卫士误私有化 ci-inbox/ci-library：白名单已修+REPUBLIC-1 复明（验证中）",
+   "status": "in-progress",
+   "due": "2026-08-17",
+   "ts": "2026-08-16T12:01:32Z",
+   "note": "GUARD-FIX-1 fd7c15d8 + republic-once.yml 一次性班"
+  },
+  {
+   "id": "RESPOND-1",
+   "title": "分级应答虫上岗（只路由不执行，灭活开关 bridge/RESPOND_OFF）",
+   "status": "done",
+   "due": "2026-08-16",
+   "ts": "2026-08-16T12:01:32Z",
+   "note": "worms/respond.py a284aa9b + worm-respond.yml cron 53 */2"
+  },
+  {
+   "id": "SPIDER-WO-1",
+   "title": "spider 断边自动出工单入 mailbox/cisvr.json（闭环）",
+   "status": "done",
+   "due": "2026-08-16",
+   "ts": "2026-08-16T12:01:32Z",
+   "note": "c5a20a68"
+  },
+  {
+   "id": "GRID-1",
+   "title": "GRID 展开包已出（L2 授权书+L3 三平台脚本）；等 chepin 存 WARM_BI_PAT",
+   "status": "waiting-chepin",
+   "due": "2026-08-23",
+   "ts": "2026-08-16T12:01:32Z"
+  },
+  {
+   "id": "COST-20260816-01",
+   "title": "LongCat 计费：按量在烧+到期包未用尽；72h 提烧规矩已立；密钥绑包核查入 QUOTA-91",
+   "status": "monitoring",
+   "due": "2026-09-01",
+   "ts": "2026-08-16T12:01:32Z"
+  },
+  {
+   "id": "SEARCH-ENT-1",
+   "title": "纠缠实现全安装面检索 #613/#614 已处理，回执去向待查（疑落 pool）；#615 usrm 取件 404（未落件）",
+   "status": "in-progress",
+   "due": "2026-08-18",
+   "ts": "2026-08-16T12:01:32Z"
+  },
+  {
+   "id": "GUARD-V2",
+   "title": "卫士摘除自动私有化权→检测/提案/报警（V2.1 修 YAML 污染）",
+   "status": "done",
+   "due": "2026-08-16",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "SENTRY-1",
+   "title": "全局失败哨兵上线（workflow_run 触发，双轨监听）",
+   "status": "done",
+   "due": "2026-08-16",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "WARM-SYNC-1",
+   "title": "温备镜像班上线（ci-warm 就绪，每日两班+抽验）",
+   "status": "in-progress",
+   "due": "2026-08-17",
+   "ts": "2026-08-16T16:48:25Z",
+   "note": "首班 15:23 UTC 后验"
+  },
+  {
+   "id": "PERM-REVIEW-1",
+   "title": "权限/授权检讨案：复明案+CI App 拆分待 chepin 裁决",
+   "status": "waiting-chepin",
+   "due": "2026-08-19",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "BENCH-FIX-1",
+   "title": "llm-bench-ext timeout25+分段落账（provision 已同步 backup）；llm-bench 修 content 解析+下线 Flash 待正名",
+   "status": "done",
+   "due": "2026-08-16",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "TIGER-1",
+   "title": "老虎队首轮公域红队侦察（第四方）",
+   "status": "in-progress",
+   "due": "2026-08-17",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "DASH-EXT-1",
+   "title": "Dashboard 大厅线程索引+全图管理中心（双端在建）",
+   "status": "in-progress",
+   "due": "2026-08-17",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "MESH-BUS-1",
+   "title": "通信中间件+集群管理引擎设计案已出；bridge v5 reply 路由待实施",
+   "status": "in-progress",
+   "due": "2026-08-20",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "TOKEN-CENSUS",
+   "title": "凭证权限指纹基线（T2/heartbeat/App 增减皆报警）",
+   "status": "queued",
+   "due": "2026-08-22",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "CISBR-1",
+   "title": "cisbr 大厅自注册事件核查",
+   "status": "queued",
+   "due": "2026-08-21",
+   "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "E912-RETRO",
+   "title": "E912 复盘：未校验 YAML 即推→卫士失败风暴；规矩=推送前必 yaml 校验",
+   "status": "done",
+   "due": "2026-08-16",
+   "ts": "2026-08-16T16:48:25Z"
+  }
+ ]
+}
