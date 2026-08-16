@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-16T18:40:30Z",
+ "ts": "2026-08-16T18:46:09Z",
  "files": {
   "worms/common.py": "07d80840640b138a286dad87c2b5a9514999cc81e7998bbfa97e3b9f4c09f8da",
   "worms/crawl.py": "d79a195d54b20df075f53bd0735173ea472fc8ddd6f21bea3df2ae7a0edfee2e",
@@ -9,8 +9,8 @@
   "worms/self_audit.py": "d60b44161d961a3cb00d0b742e5c33aac06842dece071c12e4ae169034af1638",
   "worms/WORM-SPEC.md": "e2644146c318587e3f2abfced116fff5098b1df20abcfc5820d3443274124b7d",
   "inbox/ops.json": "9125db173b53bbbe2bbc5734ca6732a2949c76e889b23333a90b124391d81d31",
-  "META-AXIOMS.md": "664a60e93b102f6b41f94649db70227ddb447ddd4fa14ae2f5cbedcb2b2cf34d",
-  "bridge/backlog.json": "ff30055c1daa10c38b22cee5aafaa8e5a44f9df4ca62c88d88363363723b7e8b",
+  "META-AXIOMS.md": "7c734bbaf7d1fd975e981a90fcd1364613c1b0659e66c55303d8e7d968183371",
+  "bridge/backlog.json": "7ad61fb96252f3e924664abdbf0c55eae439477ad6409da4e3bc79e4ccc33592",
   "bridge/outboxes.json": "8fece37b6e3a0bd0fd5e8578c0d1aa74537a8c15ad66f34a8cd489e0e280de95",
   "bridge/QUOTA-DECISION-01.md": "74fe62a40c104d95dcb6784bc007ece0affb913d1c245230c541c82e2e4e7f21",
   "grid/README-GRID.md": "bd8fa84b44c2d6d793c223b6d401cfe0dccf67f9fc3a3d5e26392c3135d59ea2",
