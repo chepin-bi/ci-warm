@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-16T19:38:10Z",
+ "ts": "2026-08-16T21:57:27Z",
  "files": {
   "worms/common.py": "07d80840640b138a286dad87c2b5a9514999cc81e7998bbfa97e3b9f4c09f8da",
   "worms/crawl.py": "d79a195d54b20df075f53bd0735173ea472fc8ddd6f21bea3df2ae7a0edfee2e",
@@ -12,7 +12,7 @@
   "META-AXIOMS.md": "1a17583edf54783b601f8650c72b704a433198732605374c7206114c692cd2bb",
   "bridge/backlog.json": "339eabb1e456d4a57685fd86f014b7f0eca354694e71376831a7676f4b3b0abd",
   "bridge/outboxes.json": "8fece37b6e3a0bd0fd5e8578c0d1aa74537a8c15ad66f34a8cd489e0e280de95",
-  "bridge/QUOTA-DECISION-01.md": "74fe62a40c104d95dcb6784bc007ece0affb913d1c245230c541c82e2e4e7f21",
+  "bridge/QUOTA-DECISION-01.md": "f1a7abd15716bc470ba2819d153b82ffe294b05c289eb723c451f161a7232383",
   "grid/README-GRID.md": "f2d1d9ccc608b3218374ce1b4e9eab7b5467489dcb03f784396df3b30553f9f1",
   "grid/enroll-macos.sh": "e552ce5e899af963a55d41bb93c394008ea0a54dda876fdfc3f38ea4c215f391",
   "grid/enroll-linux.sh": "9791d40c3824dab0fe85dc8e29e7d10d8a8470dc620939c4953c81a560c6a934",
