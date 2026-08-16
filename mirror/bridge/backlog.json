@@ -223,6 +223,91 @@
    "status": "done",
    "due": "2026-08-16",
    "ts": "2026-08-16T16:48:25Z"
+  },
+  {
+   "id": "T2-EVENT-1",
+   "title": "T2 权限变更未检事件归因",
+   "status": "attrib-done",
+   "prio": "P1",
+   "note": "bridge/incidents/T2-EVENT-1.md；修复=TOKEN-CENSUS-0基线✅+M4升级块✅+TC-PARSE-1⏳"
+  },
+  {
+   "id": "TC-PARSE-1",
+   "title": "audit虫解析大厅授权公告→凭证指纹重测级联",
+   "status": "queued",
+   "prio": "P1",
+   "note": "T2-EVENT-1 修复尾巴"
+  },
+  {
+   "id": "LEAN-FALLBACK-1",
+   "title": "cfts REQ.CTL.EXEC Lean回退工作流加固部署",
+   "status": "in-progress",
+   "prio": "P0",
+   "note": "加固:env透传+SHA pin+显式permissions；经provision落backup"
+  },
+  {
+   "id": "APP-SPLIT-1",
+   "title": "CI App 拆分 CI-OPS/CI-ROOT",
+   "status": "waiting-chepin",
+   "prio": "P2",
+   "note": "bridge/APP-SPLIT-01.md 一次落座规格书"
+  },
+  {
+   "id": "VIS-CHANGE-02",
+   "title": "ci-inbox/ci-library 可见性决策案 v2",
+   "status": "waiting-chepin",
+   "prio": "P0",
+   "note": "bridge/VIS-CHANGE-02.md；撤回草率复明建议，三方案七章齐全"
+  },
+  {
+   "id": "GATE-1",
+   "title": "COMPLIANCE-GATE 合规引擎",
+   "status": "done",
+   "prio": "P0",
+   "note": "bridge/COMPLIANCE-GATE.md+AUTHORIZATIONS.md 生效"
+  },
+  {
+   "id": "REGISTRY-1",
+   "title": "MECH-REGISTRY 全机制四语哈希注册",
+   "status": "done",
+   "prio": "P0",
+   "note": "bridge/MECH-REGISTRY.json v1 · 24件"
+  },
+  {
+   "id": "ATTRIB-1",
+   "title": "归因引擎（法→器闭环看守）",
+   "status": "in-progress",
+   "prio": "P0",
+   "note": "worms/attrib.py+worm-attrib.yml 本轮上岗"
+  },
+  {
+   "id": "WARM-WATCH-1",
+   "title": "ci-warm 反向监视（包络线）",
+   "status": "in-progress",
+   "prio": "P1",
+   "note": "warm-sync 推 warm-watch.yml 入 ci-warm"
+  },
+  {
+   "id": "WARMAPP-1",
+   "title": "WARM_BI App 两件 secret 功能验证",
+   "status": "in-progress",
+   "prio": "P1",
+   "note": "warm-sync auth_path 字段"
+  },
+  {
+   "id": "ESCALATE-1",
+   "title": "cisbr 补位 SLA 升级块",
+   "status": "done",
+   "prio": "P0",
+   "note": "respond.py f0b72c79；逾24h未应答→mailbox/cisbr+大厅"
+  },
+  {
+   "id": "QUOTA-EVENT-1",
+   "title": "配额 lane 翻转事件化",
+   "status": "done",
+   "prio": "P1",
+   "note": "self_audit a567e441；LongCat 新包恢复事件基线已捕获"
   }
- ]
+ ],
+ "ts": "2026-08-16T18:40Z"
 }
