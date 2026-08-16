@@ -1,0 +1,23 @@
+# 蜘蛛班（三虫·网，6h）
+name: worm-spider
+on:
+  schedule:
+    - cron: "11 */6 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/create-github-app-token@v1
+        id: app
+        with:
+          app-id: ${{ vars.CI_APP_ID }}
+          private-key: ${{ secrets.CI_APP_KEY }}
+          owner: chepin-ai
+      - name: 蜘蛛班（三虫·网，6h）
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: python3 worms/spider.py
