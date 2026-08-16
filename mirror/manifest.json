@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-16T18:46:09Z",
+ "ts": "2026-08-16T19:38:10Z",
  "files": {
   "worms/common.py": "07d80840640b138a286dad87c2b5a9514999cc81e7998bbfa97e3b9f4c09f8da",
   "worms/crawl.py": "d79a195d54b20df075f53bd0735173ea472fc8ddd6f21bea3df2ae7a0edfee2e",
@@ -9,11 +9,11 @@
   "worms/self_audit.py": "d60b44161d961a3cb00d0b742e5c33aac06842dece071c12e4ae169034af1638",
   "worms/WORM-SPEC.md": "e2644146c318587e3f2abfced116fff5098b1df20abcfc5820d3443274124b7d",
   "inbox/ops.json": "9125db173b53bbbe2bbc5734ca6732a2949c76e889b23333a90b124391d81d31",
-  "META-AXIOMS.md": "7c734bbaf7d1fd975e981a90fcd1364613c1b0659e66c55303d8e7d968183371",
-  "bridge/backlog.json": "7ad61fb96252f3e924664abdbf0c55eae439477ad6409da4e3bc79e4ccc33592",
+  "META-AXIOMS.md": "1a17583edf54783b601f8650c72b704a433198732605374c7206114c692cd2bb",
+  "bridge/backlog.json": "339eabb1e456d4a57685fd86f014b7f0eca354694e71376831a7676f4b3b0abd",
   "bridge/outboxes.json": "8fece37b6e3a0bd0fd5e8578c0d1aa74537a8c15ad66f34a8cd489e0e280de95",
   "bridge/QUOTA-DECISION-01.md": "74fe62a40c104d95dcb6784bc007ece0affb913d1c245230c541c82e2e4e7f21",
-  "grid/README-GRID.md": "bd8fa84b44c2d6d793c223b6d401cfe0dccf67f9fc3a3d5e26392c3135d59ea2",
+  "grid/README-GRID.md": "f2d1d9ccc608b3218374ce1b4e9eab7b5467489dcb03f784396df3b30553f9f1",
   "grid/enroll-macos.sh": "e552ce5e899af963a55d41bb93c394008ea0a54dda876fdfc3f38ea4c215f391",
   "grid/enroll-linux.sh": "9791d40c3824dab0fe85dc8e29e7d10d8a8470dc620939c4953c81a560c6a934",
   "grid/enroll-windows.ps1": "16ae7c23d9680478f0540760b839426c800e3403ccb3a4c95af2bdda80f8b80c",
@@ -22,6 +22,6 @@
   ".github/workflows/worm-spider.yml": "da18bf527de182fd4ffc07efb0a0cac3708c36cdda34917608d8cac6b585a725",
   ".github/workflows/worm-audit.yml": "5d038d2ae7c3b3a42aa7808f83e3150270491b59828e1b6cf61b37bdf8d026f7",
   ".github/workflows/worm-respond.yml": "172b1025d219e66a0a0326357eb421a58e750e1dfec4fc1c10ee9f296b635e84",
-  ".github/workflows/sentry.yml": "717355df4c1af7d20d0f98771bdcfc9c5f5ee52c1c2c10a24caeb57c737f3ed6"
+  ".github/workflows/sentry.yml": "45e9942a39c3f9def6d4a680daa74cbc8d5557f12623a9848855bc0d155e62fd"
  }
 }
