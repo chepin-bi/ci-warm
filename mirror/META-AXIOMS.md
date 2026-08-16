@@ -38,3 +38,13 @@ thr: META-AXIOMS · dtag: AXIOM-SET-1
 - **C5 凭证指纹基线律**：每枚凭证的权限面（仓×动作矩阵）有哈希基线入 weave/audit/；权限之「失」与「增」皆报警；基线永不含值。
 - **E4 监督分层律**：第三方常驻（audit 虫+sentry+巡检子代理），第四方定期（老虎队 TIGER-1 月度+变更加测）；监控者亦被监控（audit 监视卫士/哨兵之代码漂移，老虎队亦审 audit）。
 - **E5 故障切换链**：cisvr（主）→ cisbr（一备，48h TTL 心跳）→ ci-warm 降级脉冲（二备，chepin-bi）→ watchdog-takeover（调度面，已在编）。一切状态在仓、会话只是驾驶员；切换以哈希基线验收，当班大厅留证。
+
+
+## C6 · 合规引擎强制（Turn-C 立法）
+cisvr 及任何补位者每次开口/行动前必过 COMPLIANCE-GATE（bridge/COMPLIANCE-GATE.md）前置七问；提案必须七章齐全（背景与授权链/正反比较/影响矩阵/实测验证/试点/回滚/预后），缺一即不合规，worm-audit 机器执法。授权唯一权威登记=bridge/AUTHORIZATIONS.md，遇事不决先查册，禁止把已授权事项再问一遍。
+
+## C7 · 法→器闭环（立法即建器）
+任何新公理/立法必须同班登记 MECH-REGISTRY（四语齐全）并指明执法器（哪只虫/哪个 workflow 看守）；无执法器的立法视为未完成，由 worm-attrib 每 6h 看守闭环。
+
+## E6 · 归因引擎与事件级联
+每次漏洞/缺口/突发事件：bridge/incidents/ 立案 → 多 Monitor 联动归因（sentry/audit/spider/guard/warm-watch 交叉取证）→ 修复策略与实施 → 跟踪实测 → 归档归类（顺藤摸瓜，同类未爆点一并排查）。事件开立逾 24h 未归因 = worm-attrib 自动升级。监视者之间由事件触发串联（如权限变更→TOKEN-CENSUS 重测→老虎队点射）。
