@@ -1,0 +1,23 @@
+# 自省班（自审/自检/自纠，6h）
+name: worm-audit
+on:
+  schedule:
+    - cron: "29 */6 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/create-github-app-token@v1
+        id: app
+        with:
+          app-id: ${{ vars.CI_APP_ID }}
+          private-key: ${{ secrets.CI_APP_KEY }}
+          owner: chepin-ai
+      - name: 自省班（自审/自检/自纠，6h）
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: python3 worms/self_audit.py
