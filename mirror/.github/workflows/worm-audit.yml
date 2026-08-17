@@ -14,8 +14,8 @@ jobs:
       - uses: actions/create-github-app-token@v1
         id: app
         with:
-          app-id: ${{ vars.CI_APP_ID }}
-          private-key: ${{ secrets.CI_APP_KEY }}
+          app-id: ${{ vars.CI_OPS_APP_ID }}
+          private-key: ${{ secrets.CI_OPS_APP_KEY }}
           owner: chepin-ai
       - name: 自省班（自审/自检/自纠，6h）
         env:
