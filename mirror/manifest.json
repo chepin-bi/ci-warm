@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-17T10:39:03Z",
+ "ts": "2026-08-17T23:21:36Z",
  "files": {
   "worms/common.py": "07d80840640b138a286dad87c2b5a9514999cc81e7998bbfa97e3b9f4c09f8da",
   "worms/crawl.py": "d79a195d54b20df075f53bd0735173ea472fc8ddd6f21bea3df2ae7a0edfee2e",
@@ -17,11 +17,11 @@
   "grid/enroll-macos.sh": "e552ce5e899af963a55d41bb93c394008ea0a54dda876fdfc3f38ea4c215f391",
   "grid/enroll-linux.sh": "9791d40c3824dab0fe85dc8e29e7d10d8a8470dc620939c4953c81a560c6a934",
   "grid/enroll-windows.ps1": "16ae7c23d9680478f0540760b839426c800e3403ccb3a4c95af2bdda80f8b80c",
-  ".github/workflows/worm-crawl.yml": "9a7f574b324f192a0612cfeb52b2e6b34a1171fb0f7bf15dc45d33f8b53ad8d5",
-  ".github/workflows/worm-weave.yml": "a170f9d1f28f25731f94412cdcc4c61d6fbc4209069ba10d5b5528f29e7ae31b",
-  ".github/workflows/worm-spider.yml": "bb8c8800d5fcb61f02ba2c36705c0a5bf631384d157479c511a8eaaab915957e",
-  ".github/workflows/worm-audit.yml": "5d038d2ae7c3b3a42aa7808f83e3150270491b59828e1b6cf61b37bdf8d026f7",
-  ".github/workflows/worm-respond.yml": "f63ef869f7cec01f095fb80e94bc414d1b0d72f89a5875a5f3a1c696f3c848d4",
-  ".github/workflows/sentry.yml": "f707d67d6c7428f1e82fe9f0413b0e3892058a1203ef56a8aa9d428f270e15ff"
+  ".github/workflows/worm-crawl.yml": "f5afbb1007620a964cc4d674bf0100261dd19f197e56ce865a7559724b5d3243",
+  ".github/workflows/worm-weave.yml": "3273a51fb413ad44ee5b76b2ba9efb3584867fbd660597b6f7a9745417e47384",
+  ".github/workflows/worm-spider.yml": "4fa5d185d6bdf684c59b5ab6a360abb218eb4a252164d185351dc79b849025bd",
+  ".github/workflows/worm-audit.yml": "e8e92a8d5812c78014560afa6fabce8a6cfc1a187208e0a7430f675d3bacb70e",
+  ".github/workflows/worm-respond.yml": "545be1dc36fd6ee64284ce66b0c677d3037ad8e7471354e70ee58a0cb54e7548",
+  ".github/workflows/sentry.yml": "c2c14c23e91d19a161d35c895dbc4c8b0488ebbc36a43f44ee8147bb8a8c8898"
  }
 }
