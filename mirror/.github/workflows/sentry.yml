@@ -43,8 +43,8 @@ jobs:
       - uses: actions/create-github-app-token@v1
         id: app
         with:
-          app-id: ${{ vars.CI_OPS_APP_ID || vars.CI_APP_ID }}
-          private-key: ${{ secrets.CI_OPS_APP_KEY || secrets.CI_APP_KEY }}
+          app-id: ${{ vars.CI_OPS_APP_ID }}
+          private-key: ${{ secrets.CI_OPS_APP_KEY }}
           owner: chepin-ai
       - name: 报警 + 出工单
         env:
