@@ -18,10 +18,14 @@ def get_file(repo, path):
     d=gh("/repos/%s/contents/%s"%(repo,path))
     return (base64.b64decode(d["content"]).decode(), d["sha"]) if d and "content" in d else (None,None)
 def put_file(repo, path, text, msg):
-    _,sha=get_file(repo,path)
-    b={"message":msg,"content":base64.b64encode(text.encode()).decode()}
-    if sha: b["sha"]=sha
-    return bool(gh("/repos/%s/contents/%s"%(repo,path),"PUT",b))
+    # M7-RACE-FIX：读-改-写竞态止血——冲突/失败时重读 sha 重试，最多 3 次
+    for _try in range(3):
+        _,sha=get_file(repo,path)
+        b={"message":msg,"content":base64.b64encode(text.encode()).decode()}
+        if sha: b["sha"]=sha
+        if gh("/repos/%s/contents/%s"%(repo,path),"PUT",b): return True
+        time.sleep(2)
+    print("put_file 失败（3 次）:",repo,path); return False
 TS=time.strftime("%Y%m%d-%H%M", time.gmtime())
 NOW=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
@@ -59,6 +63,20 @@ def escalate():
                 answered=True; break
         if answered: continue
         cands.append((c,age_h))
+    # M4b：issue 轨升级——带 SLA 的 open issue（非 [CMD]）超时未获 cisvr 答复 → 同轨升级 cisbr
+    SLA_H={"应急":2,"指令":4,"提案":24,"问询":24}
+    for it in (gh("/repos/chepin-ai/ci-inbox/issues?state=open&per_page=100") or []):
+        t=it.get("title","")
+        if t.startswith("[CMD]"): continue
+        cat,_=classify(t+"\n"+(it.get("body") or ""))
+        if cat not in SLA_H: continue
+        iid=-it["number"]  # 负号区分评论轨，防与 comment id 撞库
+        if iid in done: continue
+        age_h=(now-time.mktime(time.strptime(it["created_at"],"%Y-%m-%dT%H:%M:%SZ")))/3600
+        if age_h<=SLA_H[cat]: continue
+        ic=gh("/repos/chepin-ai/ci-inbox/issues/%d/comments?per_page=100"%it["number"]) or []
+        if any("—— cisvr" in (r.get("body") or "") for r in ic): continue
+        cands.append(({"id":iid,"created_at":it["created_at"],"body":"[issue#%d][%s] %s"%(it["number"],cat,t)},age_h))
     if not cands:
         print("escalate：无超时件"); return
     cands=cands[:10]  # 硬上限：每班最多升级 10 件
@@ -95,6 +113,29 @@ def escalate():
     put_file("chepin-ai/ci-library","weave/respond/esc-state.json",json.dumps(est,ensure_ascii=False,indent=1),"respond: 升级水位")
     print("escalate 班完：%d 件已升级 cisbr" % len(esc))
 
+def ping_pong(st):
+    # PING/PONG：任何方发 "PING <sid>"，本虫回 "PONG <sid> <ts>"；按 sid 幂等
+    answered=set(st.get("pings",[]))
+    pat=re.compile(r"^\s*PING\s+([A-Za-z0-9_.-]{3,64})\s*$", re.M)
+    def scan(thread_url, post_url):
+        n=0
+        for c in (gh(thread_url) or []):
+            body=c.get("body") or ""
+            if "PONG " in body or "—— respond" in body: continue
+            for sid in pat.findall(body):
+                if sid in answered: continue
+                gh(post_url,"POST",{"body":"PONG %s %s\n\n信道通。—— respond（探活层）"%(sid,NOW)})
+                answered.add(sid); n+=1
+        return n
+    n=scan("/repos/chepin-ai/ci-inbox/issues/144/comments?per_page=100",
+           "/repos/chepin-ai/ci-inbox/issues/144/comments")
+    for it in (gh("/repos/chepin-ai/ci-inbox/issues?state=open&per_page=100") or [])[:20]:
+        if it.get("title","").startswith("[CMD]"): continue
+        n+=scan("/repos/chepin-ai/ci-inbox/issues/%d/comments?per_page=100"%it["number"],
+                "/repos/chepin-ai/ci-inbox/issues/%d/comments"%it["number"])
+    st["pings"]=list(answered)[-200:]
+    if n: print("ping_pong：回 PONG %d 件"%n)
+
 def main():
     if get_file("chepin-ai/ci-control","bridge/RESPOND_OFF")[0] is not None:
         print("RESPOND_OFF 在场，静默下班"); return
@@ -109,16 +150,26 @@ def main():
         cat,sla=classify(body)
         items.append({"kind":"lobby","ref":"#144/%d"%c["id"],"ts":c["created_at"],
                       "cat":cat,"sla":sla,"head":body[:60].replace("\n"," ")})
-    for it in (gh("/repos/chepin-ai/ci-inbox/issues?state=open&per_page=20") or []):
+    for it in (gh("/repos/chepin-ai/ci-inbox/issues?state=open&per_page=100") or []):
         t=it.get("title","")
         if t.startswith("[CMD]"): continue
         fp=hashlib.sha256(("issue%d"%it["number"]).encode()).hexdigest()[:12]
         if fp in st["triaged"]: continue
         cat,sla=classify(t+"\n"+(it.get("body") or ""))
+        did="RESP-"+hashlib.sha256(("#%d"%it["number"]).encode()).hexdigest()[:10]
         items.append({"kind":"issue","ref":"#%d"%it["number"],"ts":it["created_at"],
-                      "cat":cat,"sla":sla,"head":t[:60],"fp":fp})
+                      "cat":cat,"sla":sla,"head":t[:60],"fp":fp,"did":did,"num":it["number"]})
+        # AUTO-ACK-1（MSG-REL §2.1）：新 issue 当班收悉回执，四要素齐全；幂等靠 triaged 指纹
+        # 防追补风暴：仅回执 24h 内新到件；更旧件由分诊/升级轨覆盖
+        age_h=(time.time()-time.mktime(time.strptime(it["created_at"],"%Y-%m-%dT%H:%M:%SZ")))/3600
+        if fp not in st.get("acked",[]) and age_h<=24:
+            gh("/repos/chepin-ai/ci-inbox/issues/%d/comments"%it["number"],"POST",{"body":
+                "ACK #%d\n\n收悉确认：本件已入轨。\n- 分级：%s\n- SLA：%s\n- 工单号：%s\n\n回执≠应答；实质答复由 cisvr 按 SLA 呈。—— respond（收悉层）"%(it["number"],cat,sla,did)})
+            st.setdefault("acked",[]).append(fp)
     if cmts: st["last_id"]=max(st["last_id"], max(c["id"] for c in cmts))
     if not items:
+        ping_pong(st)
+        put_file("chepin-ai/ci-library","weave/respond/state.json",json.dumps(st,ensure_ascii=False,indent=1),"respond: 水位")
         escalate()
         print("respond 班完：无新言"); return
     # 1) 织面日志（链：sha 前行）
@@ -140,12 +191,14 @@ def main():
     put_file("chepin-ai/ci-control","mailbox/cisvr.json",json.dumps(doc,ensure_ascii=False,indent=1),"respond: 工单 %d 项"%len(items))
     # 3) 大厅回响（合并一条，防刷屏）
     gh("/repos/chepin-ai/ci-inbox/issues/144/comments","POST",{"body":
-        "thr: RESPOND-分诊\ndtag: RESPOND-%s\n\n新言 %d 条，已分级路由：\n%s\n\n—— respond（分级应答虫，只路由不执行）" % (
-        TS, len(items), "\n".join("- [%s] %s → %s" % (i["cat"], i["ref"], i["sla"]) for i in items))})
+        "thr: RESPOND-分诊（兼收悉回执）\ndtag: RESPOND-%s\n\n新言 %d 条，已收悉并分级路由：\n%s\n\n—— respond（分级应答虫，只路由不执行）" % (
+        TS, len(items), "\n".join("- ACK [%s] %s（工单 %s）→ %s" % (i["cat"], i["ref"], i.get("did") or "RESP-"+hashlib.sha256(i["ref"].encode()).hexdigest()[:10], i["sla"]) for i in items))})
     for i in items:
         if i.get("fp"): st["triaged"].append(i["fp"])
-    st["triaged"]=st["triaged"][-300:]
+    st["triaged"]=st["triaged"][-300:]; st["acked"]=st.get("acked",[])[-300:]
     put_file("chepin-ai/ci-library","weave/respond/state.json",json.dumps(st,ensure_ascii=False,indent=1),"respond: 水位")
+    ping_pong(st)
+    put_file("chepin-ai/ci-library","weave/respond/state.json",json.dumps(st,ensure_ascii=False,indent=1),"respond: 水位(pings)")
     escalate()
     print("respond 班完：%d 条已分诊" % len(items))
 main()
