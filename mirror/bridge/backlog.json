@@ -1,5 +1,5 @@
 {
- "v": 1,
+ "v": 3,
  "note": "体系级挂账（spider 每 6h 巡检，逾期自动出工单——'一句话放历史里'病族的制度解）",
  "items": [
   {
@@ -370,7 +370,130 @@
    "status": "legislated",
    "prio": "P1",
    "note": "COUNCIL-01附属；LIBRARY-LANE承运"
+  },
+  {
+   "id": "MESH-LINT-1",
+   "todo": "worm-audit 增 lint：未登记跨仓凭证引用即告警（MESH-ACCESS-01 §4）",
+   "prio": "mid",
+   "from": "Turn-E MESH-ACCESS"
+  },
+  {
+   "id": "SHIFT-OPEN-1",
+   "todo": "cisvr 开班仪式立法：每班首读 mailbox/cisvr.json+cisbr.json+warm-status（#647-650 漏答教训：虫已分诊而执行侧未消费）",
+   "prio": "high",
+   "from": "Turn-E ucif2 投诉归因"
+  },
+  {
+   "id": "QGL-COMP-1",
+   "todo": "qgl 公仓免费分钟依赖补偿跟踪：暖侧承接/公域承接/9/1 重置前三路（VIS-ADJUDICATION-02 §4）",
+   "prio": "high",
+   "from": "Turn-E 裁决"
+  },
+  {
+   "id": "SEALED-L2-1",
+   "todo": "L2 全量件（GENESIS-01 全量版/脱敏原件）经 [CMD] push-file-enc 入 ci-library；tar.gz 捆件 ≤22KB",
+   "prio": "mid",
+   "from": "Turn-D/E"
+  },
+  {
+   "id": "GUARD-WL-FIX",
+   "todo": "卫士白名单追责结论落地：依取证（guard_whitelist_evidence）修白名单治理=每条挂 DI 锚+变更大厅备案+卫士动作 weave 落链",
+   "prio": "high",
+   "from": "Turn-E"
+  },
+  {
+   "id": "PROV-FRESH-1",
+   "todo": "provision lane A 增鲜度校验：主备同名文件逐件 sha 比对（含 .github/workflows），不新鲜即告警——备仓卫士副本 2.7 天滞留秒杀 REPUBLIC-1 之鉴",
+   "prio": "high",
+   "from": "GUARD-WL-1"
+  },
+  {
+   "id": "LEASE-1",
+   "title": "租约文件机制（REPLICA §2）",
+   "prio": "high",
+   "ts": "2026-08-17",
+   "status": "done",
+   "done_ts": "2026-08-17T02:25Z",
+   "evidence": "worms/lease.py + qgl实测 acquire/verify/renew/fence(拒绝过期term)/release 全过"
+  },
+  {
+   "id": "AUTO-ACK-1",
+   "title": "自动收悉回执四要素（MSG-REL §2.1）",
+   "prio": "high",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "PING-PONG-1",
+   "title": "信道探活+降级告警（MSG-REL §2.2）",
+   "prio": "high",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "WORM-SPIDER-2",
+   "title": "工单状态机+断边周扫（MSG-REL §2.5）",
+   "prio": "mid",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "IDEMPOTENT-1",
+   "title": "卫士类动作幂等+去重窗（REPLICA 第四章）",
+   "prio": "mid",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "ROUTE-VOTE-1",
+   "title": "投票机 v0=respond 内嵌评分（ROUTER §3）",
+   "prio": "mid",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "MIP-STAR-1",
+   "title": "MIP* 联邦映射设计（量子纠缠多证明者↔跨仓互证）",
+   "prio": "mid",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "ORIGIN-API-1",
+   "title": "本源量子 API 全链路获取（待 cfts 复联）",
+   "prio": "high",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "TIGER-TEAM-1",
+   "title": "老虎队三队制立制（TIGER-FIELD-01 §2）",
+   "prio": "high",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "FIELD-VOTE-1",
+   "title": "行动场评分函数（行动皮 a∈[0,1]^6）",
+   "prio": "mid",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "CHAOS-01",
+   "title": "月度 Chaos 演练：随机摘一 monitor 下班看补位",
+   "prio": "mid",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "CHOKE-1",
+   "title": "choke point 清点（BeyondProd 借范）",
+   "prio": "mid",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "DUAL-SIGN-1",
+   "title": "危险动作双签机器层刚性化",
+   "prio": "high",
+   "ts": "2026-08-17"
+  },
+  {
+   "id": "QR-KEY-DIST-1",
+   "title": "365 天量子键分发协议（申请→root 批→密封投递）",
+   "prio": "mid",
+   "ts": "2026-08-17"
   }
  ],
- "ts": "2026-08-17T03:2xZ"
+ "ts": "2026-08-17T02:25Z"
 }
