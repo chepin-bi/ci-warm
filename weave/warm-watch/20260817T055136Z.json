@@ -1,0 +1,10 @@
+{
+ "ts": "20260817T055136Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "sentry:skipped,dashboard:success,隐私卫士（检测提案制 + 新仓库自动接入）:success,自愈（失败自动重跑，无需人工）:success,sentry:skipped",
+  "dashboard snapshot ts": "2026-08-17T05:48:14.533774+00:00"
+ },
+ "prev": "95c68878855ec052af133329e75f42a62ed2e2eb45668bb445424a7ab7f57316",
+ "sha256": "e2bf73983d3e6d0b4075ca7fae251b749d3caad212a1d225d0c9b7d8a23a461a"
+}
