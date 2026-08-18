@@ -1,6 +1,6 @@
 {
  "v": 3,
- "note": "体系级挂账（spider 每 6h 巡检，逾期自动出工单——'一句话放历史里'病族的制度解）",
+ "note": "体系级挂账（spider 每 6h 巡检，逾期自动出工单——'一句话放历史里'病族的制度解） ｜ 2026-08-18 Y5整改：INC-VIS-DRIFT-1 旧叙事已全链回收（VIS-CHANGE-02 作废→VIS-REMEDY-1 接替；卫士基线改准）。",
  "items": [
   {
    "id": "IRONCLAW-1",
@@ -255,9 +255,9 @@
   {
    "id": "VIS-CHANGE-02",
    "title": "ci-inbox/ci-library 可见性决策案 v2",
-   "status": "waiting-chepin",
+   "status": "superseded",
    "prio": "P0",
-   "note": "bridge/VIS-CHANGE-02.md；撤回草率复明建议，三方案七章齐全"
+   "note": "【2026-08-18 回收】叙事反转后本决策案作废：ci-control/ci-control-backup 公有=root 08-13 原设计（Pages/调度/热备承重），非漂移事故。现行处置=VIS-REMEDY-1 三方案（荐A 投影制），见 ci-inbox/bridge/adjudications.json pending-root 与大厅 dtag: vis-remedy-1。"
   },
   {
    "id": "GATE-1",
@@ -313,7 +313,7 @@
    "title": "两仓公有化漂移真案（E911叙事反转）",
    "status": "attrib-done",
    "prio": "P0",
-   "note": "bridge/incidents/INC-VIS-DRIFT-1.md；DI-01确认私有原设计"
+   "note": "bridge/incidents/INC-VIS-DRIFT-1.md；DI-01确认私有原设计→又经 08-18 实测反转：公有=原设计。E911「漂移」定性作废，真相=设计意图考古缺失。教训已入 TURN-AUDIT-01 §教训。"
   },
   {
    "id": "DI-1",
@@ -348,7 +348,7 @@
    "title": "卫士每班可见性状态基线快照+漂移事件",
    "status": "queued",
    "prio": "P1",
-   "note": "VIS-DRIFT-1修复尾巴"
+   "note": "基线以 2026-08-18 实测为准：ci-control/ci-control-backup PUBLIC（设计）、ci-inbox/ci-library/ci-logs/ci-bus PRIVATE（设计）。卫士快照照此基线判漂移。"
   },
   {
    "id": "CI-BUILD-1",
@@ -495,5 +495,5 @@
    "ts": "2026-08-17"
   }
  ],
- "ts": "2026-08-17T02:25Z"
+ "ts": "2026-08-18T09:41:24Z"
 }
