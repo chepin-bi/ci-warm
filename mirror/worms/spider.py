@@ -30,10 +30,10 @@ def main():
     findings=[]
     now=time.time()
     # 1) directives 超 48h 无 ack
-    mb=gh("/repos/chepin-ai/ci-control/contents/mailbox") or []
+    mb=gh("/repos/chepin-ai/ci-logs/contents/mailbox") or []
     for m_ in mb:
         if not m_["name"].endswith(".json"): continue
-        doc,_=get_file("chepin-ai/ci-control","mailbox/"+m_["name"])
+        doc,_=get_file("chepin-ai/ci-logs","mailbox/"+m_["name"])
         if not doc: continue
         d=json.loads(doc); acks={a.get("id") for a in (d.get("acks") or [])}
         for dr in (d.get("directives") or []):
@@ -63,7 +63,7 @@ def main():
         put_file("chepin-ai/ci-library","weave/spider/state.json",json.dumps(st,ensure_ascii=False,indent=1),"spider: 去重状态")
         gh("/repos/chepin-ai/ci-inbox/issues/144/comments","POST",{"body":"thr: SPIDER-工单\ndtag: SPIDER-%s\n\n%s\n\n—— spider（三虫·网，自动工单）" % (TS, "\n".join("- "+f for f in new))})
         # 自动出工单（SPIDER-WO-1）：每条新断边 → mailbox/cisvr.json directive，断边→工单→回响闭环
-        mb,_=get_file("chepin-ai/ci-control","mailbox/cisvr.json")
+        mb,_=get_file("chepin-ai/ci-logs","mailbox/cisvr.json")
         doc=json.loads(mb) if mb else {"directives":[]}
         have={d.get("id") for d in doc.get("directives",[])}
         nowz=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
@@ -71,6 +71,6 @@ def main():
             did="SPIDER-"+hashlib.sha256(f.encode()).hexdigest()[:12]
             if did in have: continue
             doc.setdefault("directives",[]).append({"id":did,"prio":"mid","ts":nowz,"todo":"[断边工单] "+f})
-        put_file("chepin-ai/ci-control","mailbox/cisvr.json",json.dumps(doc,ensure_ascii=False,indent=1),"spider: 工单 %d 项"%len(new))
+        put_file("chepin-ai/ci-logs","mailbox/cisvr.json",json.dumps(doc,ensure_ascii=False,indent=1),"spider: 工单 %d 项"%len(new))
     print("spider 班完：%d 发现 %d 新增" % (len(findings), len(new)))
 main()
