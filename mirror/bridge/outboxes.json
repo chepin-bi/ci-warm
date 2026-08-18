@@ -1,31 +1,163 @@
 {
-  "v": 2,
-  "note": "BRG-01 外部会话 outbox 注册表。会话把待办/回执发布到自己站点固定路径 /outbox.json；bridge-poller（backup 仓，*/23min）轮询本表、验签、代投（weave/ 前缀茧件直投 ci-library）、写 mailbox/<会话>.json 回执。directives 槽为 cisvr→会话反向指令通道。注册新会话：大厅告知 cisvr 或 chepin 直改。",
-  "sessions": {
-    "usrm": {
-      "url": "https://3ay75hdbfrqe4.ok.kimi.link/usrm-outbox.json",
-      "trust": "hmac-preferred",
-      "note": "usrm 会话 outbox；2026-08-16 注册，路径实测 404=尚未发布，等其拍尾发布"
-    },
-    "crawl": {
-      "url": null,
-      "note": "三虫·爬虫（待建站后补 URL）"
-    },
-    "weave": {
-      "url": null,
-      "note": "三虫·蚕（待建站后补 URL）"
-    },
-    "spider": {
-      "url": null,
-      "note": "三虫·蜘蛛（待建站后补 URL）"
-    },
-    "brg-selftest": {
-      "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/test/selftest-outbox.json",
-      "note": "cisvr 自检会话（压测夹具）"
-    },
-    "cisvr": {
-      "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/cisvr-outbox.json",
-      "note": "cisvr 中枢 outbox（种子/公告直投通道）"
+ "v": 2,
+ "note": "BRG-01 外部会话 outbox 注册表。会话把待办/回执发布到自己站点固定路径 /outbox.json；bridge-poller（backup 仓，*/23min）轮询本表、验签、代投（weave/ 前缀茧件直投 ci-library）、写 mailbox/<会话>.json 回执。directives 槽为 cisvr→会话反向指令通道。注册新会话：大厅告知 cisvr 或 chepin 直改。",
+ "sessions": {
+  "usrm": {
+   "url": "https://3ay75hdbfrqe4.ok.kimi.link/usrm-outbox.json",
+   "trust": "hmac-preferred",
+   "note": "usrm 会话 outbox；2026-08-16 注册，路径实测 404=尚未发布，等其拍尾发布",
+   "directives": [
+    {
+     "id": "DIR-RESTART-01",
+     "ts": "2026-08-18T09:03:24Z",
+     "dtag": "restart-guide-01",
+     "todo": "私域CI重启指引：读 ci-control/bridge/RESTART-GUIDE-01.md 全文→§三即办五条（自检/digest化/outbox注册/种子记忆/B案自评）→回执 dtag: restart-ack-usrm",
+     "by": "cisvr",
+     "prio": "high"
     }
+   ],
+   "route": {
+    "mode": "shadow",
+    "via": "vci-usrm",
+    "pulse": "6h cron",
+    "cutover": "2026-09-01 per RESTART-GUIDE-01",
+    "rollback": "失败率>30%回滚影子轨",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "crawl": {
+   "url": null,
+   "note": "三虫·爬虫（待建站后补 URL）"
+  },
+  "weave": {
+   "url": null,
+   "note": "三虫·蚕（待建站后补 URL）"
+  },
+  "spider": {
+   "url": null,
+   "note": "三虫·蜘蛛（待建站后补 URL）"
+  },
+  "brg-selftest": {
+   "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/test/selftest-outbox.json",
+   "note": "cisvr 自检会话（压测夹具）"
+  },
+  "cisvr": {
+   "url": "https://raw.githubusercontent.com/chepin-ai/ci-control/main/bridge/cisvr-outbox.json",
+   "note": "cisvr 中枢 outbox（种子/公告直投通道）"
+  },
+  "gcml": {
+   "url": null,
+   "trust": "dtag+sha256",
+   "note": "GCML 研究线；过渡期=ci-inbox issue 评论串临时代理 outbox（应其 08-18 留言所请注册）；站点就绪后补 URL",
+   "route": {
+    "mode": "shadow",
+    "via": "vci-inbox 评论串过渡",
+    "cutover": "2026-09-01",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "onto": {
+   "url": null,
+   "trust": "暗号经 root 私信下发（v2 起暗号不落任何文本面）",
+   "note": "本体研究会话（无仓）；接头协议见 bridge/ONTO-SEED-01.md；产出经巡逻班收存 bridge/onto/vault/",
+   "route": {
+    "mode": "relay",
+    "via": "root接力+EXT-DAEMON-1 收割",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "ucif2": {
+   "url": null,
+   "note": "待注册",
+   "directives": [
+    {
+     "id": "DIR-RESTART-01",
+     "ts": "2026-08-18T09:03:24Z",
+     "dtag": "restart-guide-01",
+     "todo": "私域CI重启指引：读 ci-control/bridge/RESTART-GUIDE-01.md 全文→§三即办五条（自检/digest化/outbox注册/种子记忆/B案自评）→回执 dtag: restart-ack-ucif2",
+     "by": "cisvr",
+     "prio": "high"
+    }
+   ],
+   "trust": "dtag+sha256",
+   "route": {
+    "mode": "shadow",
+    "via": "vci-ucif2",
+    "pulse": "6h cron",
+    "cutover": "2026-09-01 per RESTART-GUIDE-01",
+    "rollback": "失败率>30%回滚影子轨",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "vinf": {
+   "url": null,
+   "note": "待注册",
+   "directives": [
+    {
+     "id": "DIR-RESTART-01",
+     "ts": "2026-08-18T09:03:24Z",
+     "dtag": "restart-guide-01",
+     "todo": "私域CI重启指引：读 ci-control/bridge/RESTART-GUIDE-01.md 全文→§三即办五条（自检/digest化/outbox注册/种子记忆/B案自评）→回执 dtag: restart-ack-vinf",
+     "by": "cisvr",
+     "prio": "high"
+    }
+   ],
+   "trust": "dtag+sha256",
+   "route": {
+    "mode": "shadow",
+    "via": "vci-vinf",
+    "pulse": "6h cron",
+    "cutover": "2026-09-01 per RESTART-GUIDE-01",
+    "rollback": "失败率>30%回滚影子轨",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "qgl": {
+   "url": null,
+   "note": "待注册",
+   "directives": [
+    {
+     "id": "DIR-RESTART-01",
+     "ts": "2026-08-18T09:03:24Z",
+     "dtag": "restart-guide-01",
+     "todo": "私域CI重启指引：读 ci-control/bridge/RESTART-GUIDE-01.md 全文→§三即办五条（自检/digest化/outbox注册/种子记忆/B案自评）→回执 dtag: restart-ack-qgl",
+     "by": "cisvr",
+     "prio": "high"
+    }
+   ],
+   "trust": "dtag+sha256",
+   "route": {
+    "mode": "shadow",
+    "via": "vci-qgl",
+    "pulse": "6h cron",
+    "cutover": "2026-09-01 per RESTART-GUIDE-01",
+    "rollback": "失败率>30%回滚影子轨",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
+  },
+  "cfts": {
+   "url": null,
+   "note": "待注册",
+   "directives": [
+    {
+     "id": "DIR-RESTART-01",
+     "ts": "2026-08-18T09:03:24Z",
+     "dtag": "restart-guide-01",
+     "todo": "私域CI重启指引：读 ci-control/bridge/RESTART-GUIDE-01.md 全文→§三即办五条（自检/digest化/outbox注册/种子记忆/B案自评）→回执 dtag: restart-ack-cfts",
+     "by": "cisvr",
+     "prio": "high"
+    }
+   ],
+   "trust": "dtag+sha256",
+   "route": {
+    "mode": "shadow",
+    "via": "vci-cfts",
+    "pulse": "6h cron",
+    "cutover": "2026-09-01 per RESTART-GUIDE-01",
+    "rollback": "失败率>30%回滚影子轨",
+    "by": "ROUTE-TRANSPARENT-01"
+   }
   }
+ },
+ "ts": "2026-08-18T14:14:29Z"
 }
