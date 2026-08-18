@@ -1,17 +1,17 @@
 {
- "ts": "2026-08-18T04:03:31Z",
+ "ts": "2026-08-18T15:50:42Z",
  "files": {
   "worms/common.py": "07d80840640b138a286dad87c2b5a9514999cc81e7998bbfa97e3b9f4c09f8da",
-  "worms/crawl.py": "d79a195d54b20df075f53bd0735173ea472fc8ddd6f21bea3df2ae7a0edfee2e",
+  "worms/crawl.py": "83f09d86b3f5efc6b96d14b4c2a9e0d5ecba63a182c4d57c87f10719513e9457",
   "worms/weave.py": "9c2ba0f311aad9e35781e5c6e3b6ba474827138ae526aa436e03189e9b6b7f3b",
-  "worms/spider.py": "44a5852b96ea800ce6f427da180749d4a5514ce260578fe49b0ea0bb4bff4942",
-  "worms/respond.py": "8eb492c9a32644bc8c516284fb4638ff76ffe3a8d060268b10697d542b2ee28b",
-  "worms/self_audit.py": "d60b44161d961a3cb00d0b742e5c33aac06842dece071c12e4ae169034af1638",
+  "worms/spider.py": "983e5d4c1871a0bdf07ac42639ff438d3d597a5b6dd3c045b884998d1cd0c98a",
+  "worms/respond.py": "38ee3223365b8d33693efe26bffc777481168bc50157622d851eba9254e4f6f5",
+  "worms/self_audit.py": "51d699f895a1d31fc01bbc4881c8f99dcdf964c468ec6a02919877e1941e5557",
   "worms/WORM-SPEC.md": "e2644146c318587e3f2abfced116fff5098b1df20abcfc5820d3443274124b7d",
   "inbox/ops.json": "9125db173b53bbbe2bbc5734ca6732a2949c76e889b23333a90b124391d81d31",
   "META-AXIOMS.md": "1a17583edf54783b601f8650c72b704a433198732605374c7206114c692cd2bb",
-  "bridge/backlog.json": "4643120e200f0ae232fdd1663cbfc078ae20e69033dfcb0dfb15c72c3330946a",
-  "bridge/outboxes.json": "8fece37b6e3a0bd0fd5e8578c0d1aa74537a8c15ad66f34a8cd489e0e280de95",
+  "bridge/backlog.json": "fe598439dee8ba5455fd30eb7e769c7dfe97c6741ec9ea560de1f04c99d00526",
+  "bridge/outboxes.json": "8e110f0eba31452aa78391621d1b7d96696aafe46f26df4c388895da1e48b7b8",
   "bridge/QUOTA-DECISION-01.md": "f1a7abd15716bc470ba2819d153b82ffe294b05c289eb723c451f161a7232383",
   "grid/README-GRID.md": "f2d1d9ccc608b3218374ce1b4e9eab7b5467489dcb03f784396df3b30553f9f1",
   "grid/enroll-macos.sh": "e552ce5e899af963a55d41bb93c394008ea0a54dda876fdfc3f38ea4c215f391",
@@ -22,6 +22,6 @@
   ".github/workflows/worm-spider.yml": "4fa5d185d6bdf684c59b5ab6a360abb218eb4a252164d185351dc79b849025bd",
   ".github/workflows/worm-audit.yml": "e8e92a8d5812c78014560afa6fabce8a6cfc1a187208e0a7430f675d3bacb70e",
   ".github/workflows/worm-respond.yml": "545be1dc36fd6ee64284ce66b0c677d3037ad8e7471354e70ee58a0cb54e7548",
-  ".github/workflows/sentry.yml": "c2c14c23e91d19a161d35c895dbc4c8b0488ebbc36a43f44ee8147bb8a8c8898"
+  ".github/workflows/sentry.yml": "bc49850123dac014c079cd3f7d7f0df87a329f368fe08d9b0ef85a1cb8846843"
  }
 }
