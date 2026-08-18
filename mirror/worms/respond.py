@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # respond 虫（2h·应答面，RESPOND-1/v1）：自动分级分诊 —— 只应答/路由/登记，绝不执行
-# 授权矩阵：本虫写面仅限 ci-library/weave/respond/* 与 ci-control/mailbox/cisvr.json；
+# 授权矩阵：本虫写面仅限 ci-library/weave/respond/* 与 ci-logs/mailbox/cisvr.json（A-PROD-WAVE-1 改道）；
 #           任何实质执行仍只走 [CMD] HMAC 密封轨（C 组凭证公理），本虫无权触碰业务仓。
 # 灭活开关：ci-control/bridge/RESPOND_OFF 存在即全线静默（根键仪式位，D 组可逆）。
 import os, json, base64, time, urllib.request, urllib.error, hashlib, re
@@ -86,7 +86,7 @@ def escalate():
         esc.append({"eid":eid,"id":c["id"],"age_h":age_h,
                     "head":(c.get("body") or "").split("\n")[0][:40]})
     # 1) 注入指令到 mailbox/cisbr.json（沿用 cisvr 注入法，目标改 cisbr）
-    mb,_=get_file("chepin-ai/ci-control","mailbox/cisbr.json")
+    mb,_=get_file("chepin-ai/ci-logs","mailbox/cisbr.json")
     doc=json.loads(mb) if mb else {"directives":[]}
     have={d.get("id") for d in doc.get("directives",[])}
     n=0
@@ -95,7 +95,7 @@ def escalate():
         doc.setdefault("directives",[]).append({"id":e["eid"],"kind":"escalation","prio":"fast",
             "reason":"cisvr SLA 超时未应答","ref_comment_id":e["id"],"ts":NOW})
         n+=1
-    if n: put_file("chepin-ai/ci-control","mailbox/cisbr.json",json.dumps(doc,ensure_ascii=False,indent=1),"respond: ESC 升级 %d 项"%n)
+    if n: put_file("chepin-ai/ci-logs","mailbox/cisbr.json",json.dumps(doc,ensure_ascii=False,indent=1),"respond: ESC 升级 %d 项"%n)
     # 2) 大厅 #144 合并回复帖（一条，防刷屏）
     batch="ESC-"+hashlib.sha256(("|".join(e["eid"] for e in esc)).encode()).hexdigest()[:10]
     gh("/repos/chepin-ai/ci-inbox/issues/144/comments","POST",{"body":
@@ -180,7 +180,7 @@ def main():
     put_file("chepin-ai/ci-library","weave/respond/log-%s.md"%TS,body,"respond: 分诊 %s"%TS)
     put_file("chepin-ai/ci-library","weave/respond/latest.md",body,"respond: latest")
     # 2) 自我工单：注入 mailbox/cisvr.json（去重）
-    mb,_=get_file("chepin-ai/ci-control","mailbox/cisvr.json")
+    mb,_=get_file("chepin-ai/ci-logs","mailbox/cisvr.json")
     doc=json.loads(mb) if mb else {"directives":[]}
     have={d.get("id") for d in doc.get("directives",[])}
     for i in items:
@@ -188,7 +188,7 @@ def main():
         if did in have: continue
         doc.setdefault("directives",[]).append({"id":did,"prio":"fast" if i["cat"]=="应急" else "mid",
             "ts":NOW,"todo":"[%s应答] %s（%s）：%s —— %s"%(i["cat"],i["ref"],i["ts"],i["head"],i["sla"])})
-    put_file("chepin-ai/ci-control","mailbox/cisvr.json",json.dumps(doc,ensure_ascii=False,indent=1),"respond: 工单 %d 项"%len(items))
+    put_file("chepin-ai/ci-logs","mailbox/cisvr.json",json.dumps(doc,ensure_ascii=False,indent=1),"respond: 工单 %d 项"%len(items))
     # 3) 大厅回响（合并一条，防刷屏）
     gh("/repos/chepin-ai/ci-inbox/issues/144/comments","POST",{"body":
         "thr: RESPOND-分诊（兼收悉回执）\ndtag: RESPOND-%s\n\n新言 %d 条，已收悉并分级路由：\n%s\n\n—— respond（分级应答虫，只路由不执行）" % (
