@@ -43,7 +43,7 @@ def main():
     for n,cfg in (json.loads(reg).get("sessions") or {}).items():
         u=cfg.get("url"); st="未注册" if not u else ("可达" if fetch(u) else "不可达")
         out.append("- %s: %s" % (n, st))
-    mb=gh("/repos/chepin-ai/ci-control/contents/mailbox") or []
+    mb=gh("/repos/chepin-ai/ci-logs/contents/mailbox") or []
     out.append("\n## mailbox（%d 件）" % len(mb))
     for m_ in mb: out.append("- "+m_["name"])
     iss=gh("/repos/chepin-ai/ci-inbox/issues?state=open&per_page=10") or []
