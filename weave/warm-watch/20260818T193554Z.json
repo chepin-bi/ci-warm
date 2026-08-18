@@ -1,0 +1,10 @@
+{
+ "ts": "20260818T193554Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "sentry:skipped,inbox-poller:success,public-projection:success,files-ingest-sweeper:success,sentry:skipped",
+  "dashboard snapshot ts": "2026-08-18T18:54:13.146040+00:00"
+ },
+ "prev": "b6b4f056d7312f1a613bc3b6ba2d70ef913c69d2bfaca14ce6b9e67ebc824600",
+ "sha256": "e1b689ce61a531f0d4a9d3078821cb1e9979d2a93dc7a00b7aeb6a5918d0c49d"
+}
