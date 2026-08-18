@@ -53,8 +53,8 @@ def main():
         if live!=docd: findings.append("schema 漂移：poller-ops.json diff=%s" % (live^docd))
     # 4) mailbox 别名一致性
     for short,repo in {"qgl":"quantum-go-ledger","ucif2":"ucif2-formalization-kernel","vinf":"vinf-market-kernel","cfts":"github-repo-cfts","usrm":"usrm-repo"}.items():
-        a,_=get_file("chepin-ai/ci-control","mailbox/%s.json"%short)
-        b_,_=get_file("chepin-ai/ci-control","mailbox/%s.json"%repo)
+        a,_=get_file("chepin-ai/ci-logs","mailbox/%s.json"%short)
+        b_,_=get_file("chepin-ai/ci-logs","mailbox/%s.json"%repo)
         if a and b_:
             da,db=json.loads(a),json.loads(b_)
             if [x.get("id") for x in da.get("directives",[])]!=[x.get("id") for x in db.get("directives",[])]:
