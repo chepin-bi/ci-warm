@@ -1,0 +1,40 @@
+name: wci-duty
+# WCI 第二电池（WCI-LANE-01 职务②）：duty-harvest 只读镜像班——暖户独立运行实证
+# 只读公仓 9 vci weave/duty/state.json → weave/wci-duty.json 镜像落本仓；零跨仓写、零密钥依赖
+on:
+  workflow_dispatch: {}
+  push:
+    paths: ['.github/workflows/wci-duty.yml']
+  schedule:
+    - cron: '23 * * * *'
+permissions:
+  contents: write
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 镜像
+        run: |
+          python3 - <<'PYEOF'
+          import json, base64, datetime, hashlib, urllib.request
+          ts=datetime.datetime.now(datetime.timezone.utc).strftime('%FT%TZ')
+          VCI=['vci-inbox','vci-library','vci-logs','vci-playground','vci-ucif2','vci-vinf','vci-qgl','vci-usrm','vci-cfts']
+          out={'ts':ts,'repos':{},'src':'wci-duty 暖侧只读镜像（第二电池）'}
+          for vr in VCI:
+              u=f'https://raw.githubusercontent.com/chepin-ai/{vr}/main/weave/duty/state.json'
+              try:
+                  d=json.loads(urllib.request.urlopen(u,timeout=15).read().decode())
+                  out['repos'][vr]={'chain_head':d.get('chain_head'),'ticks':d.get('ticks'),'escalated':len(d.get('escalated',[])) if isinstance(d.get('escalated'),list) else d.get('escalated')}
+              except Exception as e:
+                  out['repos'][vr]={'error':str(e)[:60]}
+          raw=json.dumps(out,ensure_ascii=False,indent=1).encode()
+          import subprocess, os
+          os.makedirs('weave',exist_ok=True)
+          open('weave/wci-duty.json','wb').write(raw)
+          subprocess.run(['git','config','user.email','wci@federation.local']); subprocess.run(['git','config','user.name','wci-duty'])
+          subprocess.run(['git','add','weave/wci-duty.json'])
+          if subprocess.run(['git','diff','--cached','--quiet']).returncode!=0:
+              subprocess.run(['git','commit','-m',f'wci-duty 镜像 {ts} [skip ci]']); subprocess.run(['git','push'])
+          print('mirrored', len(out['repos']))
+          PYEOF
