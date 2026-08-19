@@ -1,0 +1,10 @@
+{
+ "ts": "20260819T095321Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": ".github/workflows/watchdog.yml:failure,.github/workflows/discover-and-dispatch.yml:failure,sentry:skipped,.github/workflows/watchdog.yml:failure,.github/workflows/discover-and-dispatch.yml:failure",
+  "dashboard snapshot ts": "2026-08-19T09:51:43.122643+00:00"
+ },
+ "prev": "c226f18fad6d9b45a00ae62d6223865d2883ad8093583269c4a5b804ee28e1f0",
+ "sha256": "66a329ef581b049a3ca9394ce1c193ffe5cb2c0f903d50fcc211b9bba5b25e42"
+}
