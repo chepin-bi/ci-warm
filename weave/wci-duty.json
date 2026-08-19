@@ -1,0 +1,43 @@
+{
+ "ts": "2026-08-19T13:54:15Z",
+ "repos": {
+  "vci-inbox": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "vci-library": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "vci-logs": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "vci-playground": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "vci-ucif2": {
+   "chain_head": null,
+   "ticks": null,
+   "escalated": null
+  },
+  "vci-vinf": {
+   "chain_head": null,
+   "ticks": null,
+   "escalated": null
+  },
+  "vci-qgl": {
+   "chain_head": null,
+   "ticks": null,
+   "escalated": null
+  },
+  "vci-usrm": {
+   "chain_head": null,
+   "ticks": null,
+   "escalated": null
+  },
+  "vci-cfts": {
+   "chain_head": null,
+   "ticks": null,
+   "escalated": null
+  }
+ },
+ "src": "wci-duty 暖侧只读镜像（第二电池）"
+}
