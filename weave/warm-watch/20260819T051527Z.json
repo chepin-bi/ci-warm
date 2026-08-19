@@ -1,0 +1,10 @@
+{
+ "ts": "20260819T051527Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "worm-guardsnap:success,files-ingest-sweeper:success,sentry:skipped,sentry:skipped,files-ingest-sweeper:success",
+  "dashboard snapshot ts": "2026-08-19T04:48:58.425621+00:00"
+ },
+ "prev": "935d6e9479ceddd4560af6c46830f1ea5734b5b49d29ebc285d87e5245ec0fa6",
+ "sha256": "30fa39249db42776ee100fc58ac90d08dc412791192986c2cd1b9404b3ee2edb"
+}
