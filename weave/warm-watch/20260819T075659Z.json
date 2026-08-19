@@ -1,0 +1,10 @@
+{
+ "ts": "20260819T075659Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "mech-status:success,热备份看门狗（仅部署在备份仓库 ci-control-backup）:success,ops-km:success,files-ingest-sweeper:success,files-ingest-sweeper:success",
+  "dashboard snapshot ts": "2026-08-19T07:50:50.315339+00:00"
+ },
+ "prev": "435048008cb452c2366b7a836afbbd08542a33decff250c10d0df27cd1d26496",
+ "sha256": "96017ec1e7679abda2a5da29449e701753894035425cbe3d506c037d8623e70a"
+}
