@@ -1,0 +1,10 @@
+{
+ "ts": "20260819T191241Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "worm-guardsnap:None,.github/workflows/discover-and-dispatch.yml:failure,.github/workflows/watchdog.yml:failure,sentry:skipped,llm-bench:None",
+  "dashboard snapshot ts": "2026-08-19T17:58:11.455632+00:00"
+ },
+ "prev": "4de9e73a385beb4b7193be7452f3e036f3057a7fedf94fb2b541aafc895ed372",
+ "sha256": "d4c2e25c3c03179f2d86adc19f5e7e9900922d1daeb65f8b1c78284a5efa0c8b"
+}
