@@ -493,6 +493,13 @@
    "title": "365 天量子键分发协议（申请→root 批→密封投递）",
    "prio": "mid",
    "ts": "2026-08-17"
+  },
+  {
+   "id": "BL-VCI-WATCHDOG-RED",
+   "ts": "2026-08-20T04:30:00Z",
+   "due": "2026-08-22",
+   "title": "vci-inbox/library/logs/playground 四仓 watchdog 红因定位（疑零 job 噪声）",
+   "status": "open"
   }
  ],
  "ts": "2026-08-18T09:41:24Z"
