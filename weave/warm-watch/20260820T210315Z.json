@@ -1,0 +1,10 @@
+{
+ "ts": "20260820T210315Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "worm-weave:None,llm-bench:None,duty-harvest:None,inbox-poller:None,files-ingest-sweeper:None",
+  "dashboard snapshot ts": "2026-08-20T20:42:57.945866+00:00"
+ },
+ "prev": "b84e9b8fdfcedeae1476e28034caa5cc7e43157e64fcad97a7d0edff47324517",
+ "sha256": "6ec4d47d841e363220c32035e8cd19f8a84a37414248ec56e3d6b36d5ad81ee7"
+}
