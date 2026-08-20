@@ -1,5 +1,5 @@
 {
- "ts": "2026-08-20T04:22:46Z",
+ "ts": "2026-08-20T16:32:13Z",
  "files": {
   "worms/common.py": "07d80840640b138a286dad87c2b5a9514999cc81e7998bbfa97e3b9f4c09f8da",
   "worms/crawl.py": "83f09d86b3f5efc6b96d14b4c2a9e0d5ecba63a182c4d57c87f10719513e9457",
@@ -10,7 +10,7 @@
   "worms/WORM-SPEC.md": "e2644146c318587e3f2abfced116fff5098b1df20abcfc5820d3443274124b7d",
   "inbox/ops.json": "9125db173b53bbbe2bbc5734ca6732a2949c76e889b23333a90b124391d81d31",
   "META-AXIOMS.md": "1a17583edf54783b601f8650c72b704a433198732605374c7206114c692cd2bb",
-  "bridge/backlog.json": "fe598439dee8ba5455fd30eb7e769c7dfe97c6741ec9ea560de1f04c99d00526",
+  "bridge/backlog.json": "042e2c7f017476111120353f0defc007bf7e0c2fe56994fcb3bd67ca4d439c91",
   "bridge/outboxes.json": "8e110f0eba31452aa78391621d1b7d96696aafe46f26df4c388895da1e48b7b8",
   "bridge/QUOTA-DECISION-01.md": "f1a7abd15716bc470ba2819d153b82ffe294b05c289eb723c451f161a7232383",
   "grid/README-GRID.md": "f2d1d9ccc608b3218374ce1b4e9eab7b5467489dcb03f784396df3b30553f9f1",
