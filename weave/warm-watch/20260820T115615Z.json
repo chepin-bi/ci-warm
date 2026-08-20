@@ -1,0 +1,10 @@
+{
+ "ts": "20260820T115615Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "inbox-poller:None,files-ingest-sweeper:None,chore-bus:None,sentry:skipped,.github/workflows/watchdog.yml:failure",
+  "dashboard snapshot ts": "2026-08-20T11:48:45.389802+00:00"
+ },
+ "prev": "08c5c6d5f8b235fb1b1078a3c2839b4e9f36bb4178e30d8ed911a895fa51cd03",
+ "sha256": "8cbb93b351c2d0348fddcf15a97690b56f79df7bc92c6e74d8b6691c10961cc2"
+}
