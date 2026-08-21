@@ -1,0 +1,10 @@
+{
+ "ts": "20260821T215600Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "inbox-poller:None,watchdog:skipped,public-projection:None,dm-relay:None,watchdog:skipped",
+  "dashboard snapshot ts": "2026-08-21T19:00:27.344381+00:00"
+ },
+ "prev": "90ca6c3f5221b5f38b0892571b83214ad2ed2643defef7b13cb09e7c391731f5",
+ "sha256": "eff492c850834f4b4b3812a5ff9a07ac3a2cf2e10bca1a6b35658ef1784e2be4"
+}
