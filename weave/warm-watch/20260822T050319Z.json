@@ -1,0 +1,10 @@
+{
+ "ts": "20260822T050319Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "duty-harvest:None,inbox-poller:None,files-ingest-sweeper:None,disc-dynamo:None,files-ingest-sweeper:None",
+  "dashboard snapshot ts": "2026-08-22T04:52:43.962851+00:00"
+ },
+ "prev": "5ba2fc2cf9ca2b440c21ab800d957b106f7d8d89c68139563a9861a613f3c0e0",
+ "sha256": "a3a6d927ce573a3913429193eced09628b0853e9ab87263282ffd81bc3fbc56d"
+}
