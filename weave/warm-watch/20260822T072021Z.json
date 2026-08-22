@@ -1,0 +1,10 @@
+{
+ "ts": "20260822T072021Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "gitee-mirror:success,gitee-mirror:failure,gitee-mirror:failure,gitee-mirror:success,gitee-mirror:failure",
+  "dashboard snapshot ts": "2026-08-22T04:52:43.962851+00:00"
+ },
+ "prev": "8cd1a00842fd2eb6ec26de3b9a85756ce872ce4d3aa6098d8812238656d36465",
+ "sha256": "16a59b1388b4dae34cc532499793903478995327543990c343d400f86fe7ad77"
+}
