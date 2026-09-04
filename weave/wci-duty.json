@@ -1,13 +1,11 @@
 {
- "ts": "2026-09-04T03:30:35Z",
+ "ts": "2026-09-04T04:30:41Z",
  "repos": {
   "vci-inbox": {
    "error": "HTTP Error 404: Not Found"
   },
   "vci-library": {
-   "chain_head": null,
-   "ticks": null,
-   "escalated": null
+   "error": "HTTP Error 404: Not Found"
   },
   "vci-logs": {
    "error": "HTTP Error 404: Not Found"
