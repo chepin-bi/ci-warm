@@ -1,0 +1,10 @@
+{
+ "ts": "20260906T181714Z",
+ "probe": {
+  "ci-inbox pushed_at": "?",
+  "ci-control last5": "",
+  "dashboard snapshot ts": "unreachable"
+ },
+ "prev": "8bea4125a05e8c25ebc30416cff543dac4f1c9efb2c26029a3dc526ada2a0e4d",
+ "sha256": "956d1ae0caaf6052baac6d94a861f5206fdb795d8afaa28fb063697126d2ce12"
+}
