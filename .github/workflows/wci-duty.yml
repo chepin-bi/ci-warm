@@ -7,6 +7,7 @@ on:
     types: [warm-bridge]
   push:
     paths: ['.github/workflows/wci-duty.yml']
+permissions:
   contents: write
 jobs:
   mirror:
