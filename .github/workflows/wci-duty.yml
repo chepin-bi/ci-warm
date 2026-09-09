@@ -3,11 +3,10 @@ name: wci-duty
 # 只读公仓 9 vci weave/duty/state.json → weave/wci-duty.json 镜像落本仓；零跨仓写、零密钥依赖
 on:
   workflow_dispatch: {}
+  repository_dispatch:
+    types: [warm-bridge]
   push:
     paths: ['.github/workflows/wci-duty.yml']
-  schedule:
-    - cron: '23 * * * *'
-permissions:
   contents: write
 jobs:
   mirror:
