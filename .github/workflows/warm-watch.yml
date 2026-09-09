@@ -1,7 +1,8 @@
 name: warm-watch
 on:
-  schedule: [{ cron: "*/47 * * * *" }]
   workflow_dispatch: {}
+  repository_dispatch:
+    types: [warm-bridge]
 permissions: { contents: write }
 jobs:
   watch:
